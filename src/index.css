@@ -1,0 +1,270 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================
+   BASE STYLES
+======================================== */
+
+@layer base {
+    html {
+        scroll-padding-top: 80px;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+        @apply bg-[#f6f9f7] text-slate-800 antialiased;
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        min-width: 320px;
+        min-height: 100vh;
+        overflow-x: clip;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    #root {
+        min-height: 100vh;
+        width: 100%;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+        font: inherit;
+    }
+
+    button {
+        cursor: pointer;
+    }
+
+    button:disabled {
+        cursor: not-allowed;
+    }
+
+    input,
+    textarea,
+    select {
+        min-width: 0;
+    }
+
+    img,
+    video {
+        max-width: 100%;
+        height: auto;
+    }
+
+    ::selection {
+        background: #a7f3d0;
+        color: #064e3b;
+    }
+
+    :focus-visible {
+        outline: 2px solid #10b981;
+        outline-offset: 3px;
+    }
+}
+
+/* ========================================
+   REUSABLE COMPONENTS
+======================================== */
+
+@layer components {
+
+    /* Main Container */
+
+    .shell {
+        @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+    }
+
+    /* Panel / Cards */
+
+    .panel {
+        @apply rounded-2xl border border-emerald-100/70 bg-white;
+        box-shadow: 0 8px 30px rgba(5, 80, 50, 0.045);
+        transition:
+            box-shadow 0.25s ease,
+            border-color 0.25s ease;
+    }
+
+    .panel:hover {
+        box-shadow: 0 12px 35px rgba(5, 80, 50, 0.075);
+    }
+
+    /* Base Button */
+
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-bold transition-all duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+        text-align: center;
+        white-space: normal;
+    }
+
+    /* Primary Gradient Button */
+
+    .btn-primary {
+        @apply btn bg-gradient-to-r from-emerald-600 to-green-500 text-white;
+        box-shadow: 0 8px 24px rgba(16, 185, 129, 0.22);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+        @apply from-emerald-700 to-green-600;
+        box-shadow: 0 10px 30px rgba(16, 185, 129, 0.35);
+        transform: translateY(-2px);
+    }
+
+    .btn-primary:active:not(:disabled) {
+        transform: scale(0.98);
+    }
+
+    /* Outline Button */
+
+    .btn-outline {
+        @apply btn border border-emerald-200 bg-white text-emerald-800;
+    }
+
+    .btn-outline:hover:not(:disabled) {
+        @apply border-emerald-300 bg-emerald-50;
+        box-shadow: 0 5px 18px rgba(16, 185, 129, 0.1);
+    }
+
+    /* Input Fields */
+
+    .field {
+        @apply w-full rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none transition duration-200;
+    }
+
+    .field:focus {
+        @apply border-emerald-500 ring-4 ring-emerald-100;
+    }
+
+    .field::placeholder {
+        @apply text-slate-400;
+    }
+
+    .field:disabled {
+        @apply cursor-not-allowed bg-slate-50 opacity-70;
+    }
+
+    /* Section Headings */
+
+    .section-title {
+        @apply text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl;
+        line-height: 1.3;
+    }
+
+    /* Pills / Badges */
+
+    .pill {
+        @apply inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700;
+    }
+}
+
+/* ========================================
+   ANIMATIONS
+======================================== */
+
+@layer utilities {
+
+    .animate-fade-in {
+        animation: fadeIn 0.45s ease-out both;
+    }
+
+    .animate-slide-up {
+        animation: slideUp 0.45s ease-out both;
+    }
+
+    .animate-scale-in {
+        animation: scaleIn 0.3s ease-out both;
+    }
+
+    .glow-green {
+        box-shadow: 0 0 25px rgba(16, 185, 129, 0.16);
+    }
+
+    .text-gradient-green {
+        @apply bg-gradient-to-r from-emerald-700 to-green-500 bg-clip-text text-transparent;
+    }
+}
+
+/* ========================================
+   KEYFRAMES
+======================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ========================================
+   RESPONSIVE IMPROVEMENTS
+======================================== */
+
+@media (max-width: 640px) {
+
+    .btn {
+        @apply px-4 py-2.5 text-sm;
+    }
+
+    .field {
+        @apply px-3 py-2.5 text-sm;
+    }
+
+    .panel {
+        border-radius: 14px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+}
+
+/* ========================================
+   ACCESSIBILITY
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
